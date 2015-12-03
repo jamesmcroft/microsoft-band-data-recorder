@@ -1,6 +1,10 @@
 ﻿{
   "dependencies": {
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
+    "Croft.Core.Common": "1.0.3",
+    "Croft.Core.UWP": "1.0.7",
+    "Microsoft.Band": "1.3.10929",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "MvvmLightLibs": "5.2.0"
   },
   "frameworks": {
     "uap10.0": {}
