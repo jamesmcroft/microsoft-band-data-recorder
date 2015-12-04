@@ -52,12 +52,18 @@ namespace BandDataRecorder.ViewModels
             this._dialog = dialog;
 
             this.ConnectToBandCommand = new RelayCommand(async () => await this.ConnectToBandAsync());
+            this.RecordSensorsCommand = new RelayCommand(this.StartRecordingSensors);
         }
 
         /// <summary>
         /// Gets the command responsible for connecting to the Microsoft Band.
         /// </summary>
         public ICommand ConnectToBandCommand { get; }
+
+        /// <summary>
+        /// Gets the command responsible for recording the sensors on the Microsoft Band.
+        /// </summary>
+        public ICommand RecordSensorsCommand { get; }
 
         private async Task ConnectToBandAsync()
         {
@@ -101,6 +107,11 @@ namespace BandDataRecorder.ViewModels
             {
                 Logger.Log.Error(be.Message);
             }
+        }
+
+        private void StartRecordingSensors()
+        {
+            // ToDo
         }
 
         /// <summary>
