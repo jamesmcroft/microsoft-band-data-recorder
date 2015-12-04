@@ -1,6 +1,6 @@
 ﻿namespace BandDataRecorder.ViewModels
 {
-    using Croft.Core.Helpers;
+    using Croft.Core.Messaging.Dialogs;
 
     using GalaSoft.MvvmLight.Ioc;
 

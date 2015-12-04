@@ -15,11 +15,10 @@ namespace BandDataRecorder.ViewModels
     using System.Windows.Input;
 
     using Windows.System;
-    using Windows.System.Profile;
     using Windows.UI.Popups;
 
     using Croft.Core.Diagnostics;
-    using Croft.Core.Helpers;
+    using Croft.Core.Messaging.Dialogs;
 
     using GalaSoft.MvvmLight;
     using GalaSoft.MvvmLight.Command;
@@ -35,7 +34,7 @@ namespace BandDataRecorder.ViewModels
 
         private bool _isBandConnected;
 
-        private MessageDialogHelper _dialog;
+        private readonly MessageDialogHelper _dialog;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainPageViewModel"/> class.
@@ -71,10 +70,12 @@ namespace BandDataRecorder.ViewModels
                 {
                     await
                         this._dialog.ShowAsync(
+                            "Microsoft Band not found",
                             "A Microsoft Band is not connected to this device. Please check your Bluetooth connection and try again.",
                             new UICommand(
                                 "Check settings",
-                                async command => { await Launcher.LaunchUriAsync(new Uri("ms-settings:bluetooth")); }));
+                                async command => { await Launcher.LaunchUriAsync(new Uri("ms-settings:bluetooth")); }),
+                            new UICommand("OK"));
 
                     return;
                 }
@@ -82,6 +83,15 @@ namespace BandDataRecorder.ViewModels
                 this._bandClient = await BandClientManager.Instance.ConnectAsync(band);
                 if (this._bandClient == null)
                 {
+                    await
+                        this._dialog.ShowAsync(
+                            "Microsoft Band connection error",
+                            "The Microsoft Band could not be connected to. Please check your Bluetooth connection and try again.",
+                            new UICommand(
+                                "Check settings",
+                                async command => { await Launcher.LaunchUriAsync(new Uri("ms-settings:bluetooth")); }),
+                            new UICommand("OK"));
+
                     return;
                 }
 
