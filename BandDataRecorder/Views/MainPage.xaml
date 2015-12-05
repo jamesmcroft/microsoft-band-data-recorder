@@ -14,7 +14,7 @@
             </Button.Content>
         </Button>
 
-        <Button RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Width="200" Height="200" Background="#FFE51400" Command="{Binding RecordSensorsCommand}" Visibility="{Binding IsBandConnected, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource CircularButtonStyle}">
+        <Button RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Width="200" Height="200" Command="{Binding RecordSensorsCommand}" Style="{StaticResource RecordingCircularButtonStyle}">
             <Button.Content>
                 <Image Source="../Assets/Icons/Record.png" Width="100" Height="100" />
             </Button.Content>
